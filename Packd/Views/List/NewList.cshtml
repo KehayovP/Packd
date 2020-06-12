@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "NewList";
+}
+
+<h1 class="text-center mb-3">Create a New List</h1>
+
+<div id="DefaultListContent" class="w-50 float-left mb-2">
+
+    <h3 class="text-center w-75">@ViewBag.DefaultListContent.ListName</h3>
+
+    @foreach (var category in ViewBag.DefaultListContent.Categories)
+    {
+        <ul class="list-group w-75 mr-auto ml-auto" id="@category.CategoryId">
+            <li id="category-@category.CategoryId" class="list-group-item active category-li">@category.CategoryName</li>
+
+            @foreach (var item in category.Items)
+            {
+                string IsPacked = @item.IsPacked ? "checked" : "";
+                <li id="item-@item.ItemId" class="list-group-item">@item.ItemName <input class="float-right add-default-item" type="button" value="+"></li>
+            }
+
+        </ul>
+        <br />
+        <br />
+    }
+
+    <br />
+    <br />
+</div>
+
+<div id="NewListContentDiv" class="w-50 float-right mb-2">
+
+    <div class="form-group" id="NewListNameFieldDiv">
+        <input type="text" class="form-control" id="NewListNameField" placeholder="List name goes here ..." required>
+        <input type="button" name="CreateNewListButton" id="CreateNewListButton" value="Create" class="btn btn-success float-right mt-1" />
+    </div>
+
+
+
+    <div id="NewListContent">
+        <h3 class="text-center w-75" id="NewListName"></h3>
+
+        <div class="form-group" id="NewCategoryDiv">
+            <input type="text" class="form-control" id="NewCategoryField" placeholder="Cateogry name goes here ..." required>
+            <input type="button" name="CreateNewCategoryButton" id="CreateNewCategoryButton" value="Create Category" class="btn btn-success float-right mt-1" />
+        </div>
+        <br />
+        <br />
+
+        <div id="PredefinedCategories">
+        </div>
+
+        <div id="CustomCategories">
+        </div>
+
+        <div id="SaveListDiv">
+            <br />
+            <br />
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="SaveListButton">Save List</button>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/js/NewList.js"></script>

@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "DisplayList";
+}
+
+<div class="ml-auto mr-auto text-center">
+
+    <h3 class="text-center w-50 ml-auto mr-auto">@ViewBag.DisplayListContent.ListName</h3>
+    <input type="hidden" class="ListId" value="@ViewBag.DisplayListContent.ListId" />
+
+    @foreach (var category in ViewBag.DisplayListContent.Categories)
+    {
+        <ul class="list-group w-50 ml-auto mr-auto">
+            <li id="category-@category.CategoryId" class="list-group-item active">@category.CategoryName</li>
+
+            @foreach (var item in category.Items)
+            {
+                string IsPacked = @item.IsPacked == true ? "checked" : "";
+                string IsDefault = ViewBag.DisplayListContent.ListId == 1 ? "disabled" : "";
+                int IsPackedIntValue = @item.IsPacked ?  1 : 0;
+
+
+                <li id="item-@item.ItemId" class="list-group-item">
+                    @item.ItemName <input class="float-right item-packed" type="checkbox" @IsPacked @IsDefault />
+                    <input type="hidden" class="CategoryId" value="@category.CategoryId" />
+                    <input type="hidden" class="ItemId" value="@item.ItemId" />
+                </li>
+            }
+
+        </ul>
+        <br />
+        <br />
+    }
+
+</div>
+
+<script src="~/js/DisplayList.js"></script>

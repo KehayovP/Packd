@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "MyLists";
+}
+
+<h1 class="text-center">My Lists</h1>
+<div class="w-25 text-center mr-auto ml-auto">
+    <input type="button" class="btn btn-secondary btn-lg btn-block" value="New List" onclick="location.href='@Url.Action("NewList", "List")'">
+</div>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Creation Data</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in ViewBag.Lists)
+        {
+        <tr id="@item.Id" onclick="location.href='@Url.Action("DisplayList", "List",  new { @item.Id } )'">
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.CreationDate</td>
+            <td><a href="#">Edit</a></td>
+            <td><a href="#">Delete</a></td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+
+
+
+
