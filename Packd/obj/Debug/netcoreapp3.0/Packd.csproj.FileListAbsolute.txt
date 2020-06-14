@@ -128,6 +128,7 @@ C:\Users\kehay\source\repos\Packd\Packd\obj\Debug\netcoreapp3.0\Packd.TagHelpers
 C:\Users\kehay\source\repos\Packd\Packd\obj\Debug\netcoreapp3.0\Packd.TagHelpers.output.cache
 C:\Users\kehay\source\repos\Packd\Packd\obj\Debug\netcoreapp3.0\Packd.RazorCoreGenerate.cache
 C:\Users\kehay\source\repos\Packd\Packd\obj\Debug\netcoreapp3.0\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\kehay\source\repos\Packd\Packd\obj\Debug\netcoreapp3.0\Razor\Views\List\DeleteList.cshtml.g.cs
 C:\Users\kehay\source\repos\Packd\Packd\obj\Debug\netcoreapp3.0\Razor\Views\List\DisplayList.cshtml.g.cs
 C:\Users\kehay\source\repos\Packd\Packd\obj\Debug\netcoreapp3.0\Razor\Views\List\Export.cshtml.g.cs
 C:\Users\kehay\source\repos\Packd\Packd\obj\Debug\netcoreapp3.0\Razor\Views\List\MyLists.cshtml.g.cs
@@ -145,4 +146,3 @@ C:\Users\kehay\source\repos\Packd\Packd\obj\Debug\netcoreapp3.0\Packd.Views.pdb
 C:\Users\kehay\source\repos\Packd\Packd\obj\Debug\netcoreapp3.0\Packd.csproj.CopyComplete
 C:\Users\kehay\source\repos\Packd\Packd\obj\Debug\netcoreapp3.0\Packd.dll
 C:\Users\kehay\source\repos\Packd\Packd\obj\Debug\netcoreapp3.0\Packd.pdb
-C:\Users\kehay\source\repos\Packd\Packd\obj\Debug\netcoreapp3.0\Packd.csprojAssemblyReference.cache

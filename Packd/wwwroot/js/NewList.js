@@ -170,10 +170,10 @@ window.onload = function () {
                 NewListCategories: NewList.Categories
             },
             success: function () {
-                alert(true);
+                location.href = '../List/MyLists';
             },
             error: function () {
-                alert(false);
+                //alert(false);
             }
         });
     });

@@ -17,15 +17,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var item in ViewBag.Lists)
+        @foreach (var item in ViewBag.Lists)
         {
-        <tr id="@item.Id" onclick="location.href='@Url.Action("DisplayList", "List",  new { @item.Id } )'">
-            <td>@item.Id</td>
-            <td>@item.Name</td>
-            <td>@item.CreationDate</td>
-            <td><a href="#">Edit</a></td>
-            <td><a href="#">Delete</a></td>
-        </tr>
+            <tr id="@item.Id">
+                <td onclick="location.href='@Url.Action("DisplayList", "List",  new { @item.Id } )'">@item.Id</td>
+                <td onclick="location.href='@Url.Action("DisplayList", "List",  new { @item.Id } )'">@item.Name</td>
+                <td onclick="location.href='@Url.Action("DisplayList", "List",  new { @item.Id } )'">@item.CreationDate</td>
+                <td class="edit-list" onclick="location.href='@Url.Action("EditList", "List",  new { @item.Id } )'"><a href="#">Edit</a></td>
+                <td class="delete-list" onclick="location.href='@Url.Action("DeleteList", "List", new { @item.Id })'">Delete</td>
+            </tr>
         }
 
     </tbody>

@@ -47,7 +47,7 @@ namespace Packd.Controllers
             foreach (var item in NewListCategories)
             {
                 var CategoryToSave = item[0];
-                
+
                 // Save Category to Category table in the database (if not already there)
                 if (!CommonQueries.CategoryExists(_context, CategoryToSave))
                 {
@@ -72,7 +72,7 @@ namespace Packd.Controllers
                 }
             }
 
-            return View();
+            return RedirectToAction("MyLists");
         }
 
         [HttpGet("{controller}/{action}/{Id}")]
@@ -84,13 +84,21 @@ namespace Packd.Controllers
             return View();
         }
 
-        
         public IActionResult SetPacked(int ListId, int CategoryId, int ItemId, int IsPacked)
         {
             // Update IsPacked value of Item in ListContent table in the Database.
             _context.Database.ExecuteSqlRaw("EXECUTE Packd.UpdateItemIsPacked_SP {0}, {1}, {2}, {3}", IsPacked, ListId, CategoryId, ItemId);
 
             return View();
+        }
+
+        [HttpGet("{controller}/{action}/{ListId}")]
+        public IActionResult DeleteList(int ListId)
+        {
+            // Delete list by List Id
+            _context.Database.ExecuteSqlRaw("EXECUTE Packd.DeleteList_StoredProcedure {0}", ListId);
+
+            return RedirectToAction("MyLists");
         }
     }
 }

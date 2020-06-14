@@ -126,8 +126,7 @@ GO
 -- Populate Lists table with the default values
 INSERT INTO [Packd].[Lists] (Name)
 VALUES 
-	('Default'),
-	('Personal List 1')
+	('Default')
 ;
 GO
 
@@ -195,6 +194,7 @@ AS
 BEGIN
 	INSERT INTO Packd.Lists (Name, CreationDate) VALUES (@Name, GETDATE())
 END
+GO
 
 -- Create New Category Stored Procedure
 CREATE OR ALTER PROCEDURE [Packd].[CreateNewCategory_StoredProcedure]
@@ -203,6 +203,7 @@ AS
 BEGIN
 	INSERT INTO Packd.Category(Name, CreationDate, IsDefault) VALUES (@Name, GETDATE(), 0)
 END
+GO
 
 -- Create New Item Stored Procedure
 CREATE OR ALTER PROCEDURE [Packd].[CreateNewItem_StoredProcedure]
@@ -212,9 +213,10 @@ AS
 BEGIN
 	INSERT INTO Packd.Items(Name, CreationDate, IsDefault, CategoryId) VALUES (@Name, GETDATE(), 0, @CategoryId)
 END
+GO
 
 -- Create New List Content Stored Procedure
-CREATE OR ALTER   PROCEDURE [Packd].[CreateNewListContent_StoredProcedure]
+CREATE OR ALTER PROCEDURE [Packd].[CreateNewListContent_StoredProcedure]
 @ListId int,
 @CategoryId int,
 @ItemId int
@@ -222,9 +224,10 @@ AS
 BEGIN
 	INSERT INTO Packd.ListContent(ListId, CategoryId, ItemId) VALUES (@ListId, @CategoryId, @ItemId)
 END
+GO
 
 -- Update IsPacked on Item in ListContent Stored Procedure
-CREATE OR ALTER   PROCEDURE [Packd].UpdateItemIsPacked_SP
+CREATE OR ALTER PROCEDURE [Packd].UpdateItemIsPacked_SP
 @IsPacked int,
 @ListId int,
 @CategoryId int,
@@ -233,3 +236,17 @@ AS
 BEGIN
 	UPDATE Packd.ListContent SET IsPacked = @IsPacked WHERE ListId = @ListId AND CategoryId = @CategoryId AND ItemId = @ItemId
 END
+GO
+
+-- Delete List Stored Procedure
+CREATE OR ALTER PROCEDURE [Packd].[DeleteList_StoredProcedure]
+@ListId int
+AS
+BEGIN
+	IF (@ListId <> 1) -- default list
+	BEGIN
+		DELETE FROM [Packd].[Lists] WHERE Lists.Id = @ListId;
+		DELETE FROM [Packd].[ListContent] WHERE ListContent.ListId = @ListId;
+	END
+END
+GO
