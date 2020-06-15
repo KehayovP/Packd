@@ -10,5 +10,6 @@ namespace Packd.Common.CommonModels
         public int ItemId { get; set; }
         public string ItemName { get; set; }
         public bool IsPacked { get; set; }
+        public int ListContentId { get; set; }
     }
 }

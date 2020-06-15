@@ -24,6 +24,7 @@ namespace Packd
                                           where lc.ListId == aListId
                                           select new ListContentDataRaw
                                           {
+                                              ListContentId = lc.Id,
                                               ListId = lc.ListId,
                                               ListName = l.Name,
                                               CategoryId = c.Id,
@@ -65,7 +66,8 @@ namespace Packd
                                     {
                                         ItemId = item.ItemId,
                                         ItemName = item.ItemName,
-                                        IsPacked = item.IsPacked
+                                        IsPacked = item.IsPacked,
+                                        ListContentId = item.ListContentId
                                     }).Distinct().ToList()
                 })
                 .GroupBy(distinct => distinct.CategoryName)

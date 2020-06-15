@@ -2,10 +2,8 @@
 
     $('input.item-packed').change(function (event) {
         event.stopPropagation();
-        let ListId = $('.ListId').val();
-        let CategoryId = event.currentTarget.parentElement.parentElement.children[0].getAttribute('id').split("-")[1];
-        let ItemId = event.currentTarget.parentElement.getAttribute('id').split("-")[1];
         let IsItemPacked = $(event.currentTarget).prop("checked") == true ? 1 : 0;
+        let ListContentId = event.currentTarget.parentElement.children[1].getAttribute('value');
 
         $.ajax({
             type: "POST",
@@ -13,10 +11,8 @@
             content: "application/json; charset=utf-8",
             dataType: "text",
             data: {
-                ListId: ListId,
-                CategoryId: CategoryId,
-                ItemId: ItemId,
-                IsPacked: IsItemPacked               
+                IsPacked: IsItemPacked,
+                ListContentId: ListContentId
             },
             success: function () {
                 console.log("Item successfully updated.");

@@ -227,14 +227,12 @@ END
 GO
 
 -- Update IsPacked on Item in ListContent Stored Procedure
-CREATE OR ALTER PROCEDURE [Packd].UpdateItemIsPacked_SP
+CREATE OR ALTER PROCEDURE [Packd].UpdateItemIsPacked_StoredProcedure
 @IsPacked int,
-@ListId int,
-@CategoryId int,
-@ItemId int
+@ListContentId int
 AS
 BEGIN
-	UPDATE Packd.ListContent SET IsPacked = @IsPacked WHERE ListId = @ListId AND CategoryId = @CategoryId AND ItemId = @ItemId
+	UPDATE Packd.ListContent SET IsPacked = @IsPacked WHERE Id = @ListContentId
 END
 GO
 

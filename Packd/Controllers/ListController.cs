@@ -84,10 +84,10 @@ namespace Packd.Controllers
             return View();
         }
 
-        public IActionResult SetPacked(int ListId, int CategoryId, int ItemId, int IsPacked)
+        public IActionResult SetPacked(int IsPacked, int ListContentId)
         {
             // Update IsPacked value of Item in ListContent table in the Database.
-            _context.Database.ExecuteSqlRaw("EXECUTE Packd.UpdateItemIsPacked_SP {0}, {1}, {2}, {3}", IsPacked, ListId, CategoryId, ItemId);
+            _context.Database.ExecuteSqlRaw("EXECUTE Packd.UpdateItemIsPacked_StoredProcedure {0}, {1}", IsPacked, ListContentId);
 
             return View();
         }

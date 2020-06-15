@@ -2,6 +2,7 @@
 {
     public class ListContentDataRaw
     {
+        public int ListContentId { get; set; }
         public int ListId { get; set; }
         public string ListName { get; set; }
         public int CategoryId { get; set; }
