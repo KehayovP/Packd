@@ -3,8 +3,30 @@
     ViewData["Title"] = "Export";
 }
 
-<h1>Export</h1>
-<div class="alert alert-danger" role="alert">
-    This page is currently under development. It is not available at the moment.
-</div>
+<h1 class="text-center">Export</h1>
 
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Creation Data</th>
+            <th scope="col">Export</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Lists)
+        {
+            <tr id="@item.Id">
+                <td onclick="location.href='@Url.Action("DisplayList", "List",  new { @item.Id } )'">@item.Id</td>
+                <td onclick="location.href='@Url.Action("DisplayList", "List",  new { @item.Id } )'">@item.Name</td>
+                <td onclick="location.href='@Url.Action("DisplayList", "List",  new { @item.Id } )'">@item.CreationDate</td>
+                @* Onclick on following td: onclick="location.href='@Url.Action("Export", "List",  new { @item.Id } )'" *@
+                <td class="export-list"><button type="button" class="btn btn-warning">Export</button></td> 
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<script src="~/js/Export.js"></script>

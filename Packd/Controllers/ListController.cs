@@ -26,6 +26,7 @@ namespace Packd.Controllers
 
         public IActionResult Export()
         {
+            ViewBag.Lists = _context.Lists;
             return View();
         }
 
