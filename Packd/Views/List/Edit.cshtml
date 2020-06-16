@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center">Edit List</h1>
+
+<div id="DefaultListContent" class="w-50 float-left mb-2">
+
+    <h3 class="text-center w-75">@ViewBag.DefaultListContent.ListName</h3>
+
+    @foreach (var category in ViewBag.DefaultListContent.Categories)
+    {
+        <ul class="list-group w-75 mr-auto ml-auto" id="@category.CategoryId">
+            <li id="category-@category.CategoryId" class="list-group-item active category-li">@category.CategoryName</li>
+
+            @foreach (var item in category.Items)
+            {
+                string IsPacked = @item.IsPacked ? "checked" : "";
+                <li id="item-@item.ItemId" class="list-group-item">@item.ItemName <input class="float-right add-default-item" type="button" value="+"></li>
+            }
+
+        </ul>
+        <br />
+        <br />
+    }
+
+    <br />
+    <br />
+</div>
+
+@* Load List to be editted *@
+<div id="EditListContentDiv" class="w-50 float-right mb-2">
+
+    <div id="EditListContent">
+        <h3 class="text-center w-75" id="EditListName">@ViewBag.ListToEditListContent.ListName</h3>
+        <input type="hidden" id="ListId" value="@ViewBag.ListToEditListContent.ListId" />
+
+        <div class="form-group" id="NewCategoryDiv">
+            <input type="text" class="form-control" id="NewCategoryField" placeholder="Cateogry name goes here ..." required>
+            <input type="button" name="CreateNewCategoryButton" id="CreateNewCategoryButton" value="Create Category" class="btn btn-success float-right mt-1" />
+        </div>
+        <br />
+        <br />
+
+        <div id="CustomCategories">
+            @foreach (var category in ViewBag.ListToEditListContent.Categories)
+            {
+
+            <div id="temp-category-@category.CategoryId">
+                <ul class="list-group w-75 mr-auto ml-auto" id="custom-@category.CategoryId">
+                    <li id="temp-category-@category.CategoryId" class="list-group-item active category-li">@category.CategoryName <input class="float-right remove-custom-category btn btn-danger" type="button" value="x" /></li>
+                    @foreach (var item in category.Items)
+                    {
+                        <li id="custom-item-@item.ItemId" class="list-group-item item-li">@item.ItemName <input class="float-right remove-custom-item btn btn-danger" type="button" value="x" /></li>
+                    }
+                </ul>
+
+
+                <div class="input-group mb-3 w-75 mr-auto ml-auto">
+                    <input type="text" class="form-control add-item-field" placeholder="Add item to category..." />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary add-item-button" type="button">Add</button>
+                    </div>
+
+                </div>
+                <br />
+                <br />
+            </div>
+            }
+        </div>
+
+        <div id="UpdateListDiv" class="mb-5">
+            <br />
+            <br />
+            <button type="button" class="btn btn-primary btn-lg btn-block mb-2" id="UpdateListButton">Update List</button>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/js/EditList.js"></script>
+

@@ -100,5 +100,63 @@ namespace Packd.Controllers
 
             return RedirectToAction("MyLists");
         }
+
+        [HttpGet("{controller}/{action}/{ListId}")]
+        public IActionResult Edit(int ListId)
+        {
+            // Don't edit if default list
+            if(ListId == 1)
+            {
+                return RedirectToAction("MyLists");
+            }
+            
+            ListContentData DefaultListContent = CommonQueries.GetListContentData(_context);
+            ListContentData ListToEditListContent = CommonQueries.GetListContentData(_context, ListId);
+
+            ViewBag.DefaultListContent = DefaultListContent;
+            ViewBag.ListToEditListContent = ListToEditListContent;
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult UpdateList(int ListId, string ListName, List<string[]> ListCategories)
+        {
+            if (ListId != 1)
+            {
+                // Delete List Information
+                _context.Database.ExecuteSqlRaw("EXECUTE Packd.DeleteListContentInfo_StoredProcedure {0}", ListId);
+
+                // Insert New Information
+                foreach (var item in ListCategories)
+                {
+                    var CategoryToSave = item[0];
+
+                    // Save Category to Category table in the database (if not already there)
+                    if (!CommonQueries.CategoryExists(_context, CategoryToSave))
+                    {
+                        _context.Database.ExecuteSqlRaw("EXECUTE Packd.CreateNewCategory_StoredProcedure {0}", CategoryToSave);
+                    }
+
+                    var CategoryId = CommonQueries.GetCategoryId(_context, CategoryToSave);
+
+                    for (var i = 1; i < item.Length; i++)
+                    {
+                        // Save Item to Items table in the database (if not already there)
+                        if (!CommonQueries.ItemExistsInCategory(_context, item[i], CategoryId))
+                        {
+                            _context.Database.ExecuteSqlRaw("EXECUTE Packd.CreateNewItem_StoredProcedure {0}, {1}", item[i], CategoryId);
+                        }
+
+                        var ItemId = CommonQueries.GetItemId(_context, CategoryId, item[i]);
+
+                        // Save Item to ListContent table in the database
+                        _context.Database.ExecuteSqlRaw("EXECUTE Packd.CreateNewListContent_StoredProcedure {0}, {1}, {2}", ListId, CategoryId, ItemId);
+                    }
+                }
+            }
+
+            return RedirectToAction("MyLists");
+        }
     }
 }

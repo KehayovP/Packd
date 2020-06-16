@@ -248,3 +248,15 @@ BEGIN
 	END
 END
 GO
+
+-- Delete List Content Information Stored Procedure
+CREATE OR ALTER PROCEDURE [Packd].DeleteListContentInfo_StoredProcedure
+@ListId int
+AS
+BEGIN
+	IF (@ListId <> 1)
+	BEGIN
+		DELETE FROM Packd.ListContent WHERE ListId = @ListId
+	END
+END
+GO
