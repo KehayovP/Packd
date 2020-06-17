@@ -2,7 +2,6 @@ window.onload = function () {
 
     let _NewCategoryButtonClick = 0;
     let _NewItemButtonClick = 0;
-    let _NewDefaultCategoryButtonClick = 0;
     let _NewDefaultItemButtonClick = 0;
 
     // Set Display Properties on divs depending on state
@@ -195,9 +194,7 @@ function RemoveCustomCategoryEventHandler(existingCategoriesList) {
     $('.remove-custom-category').unbind().click(function (event) {
         event.stopPropagation();
         event.currentTarget.parentElement.parentElement.parentElement.remove();
-        console.log(existingCategoriesList);
         existingCategoriesList.splice(existingCategoriesList.indexOf(event.currentTarget.parentElement.innerText), 1);
-        console.log(existingCategoriesList);
     });
 }
 

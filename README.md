@@ -24,7 +24,3 @@ Execute the Packd_init.sql script located in DatabaseScrpits folder to create th
 - Bootstrap
 - JavaScript
 - jQuery
-
-## Known bugs and issues
-- Currently the Export functionality, Edit button of a list and Delete button of a list do not work. They are under development and will be available shortly.
-- When two or more identical items are added to the same category, the "Packed or Not" functionality marks them all as "Packed or Not". Example, we cannot have two passports in the Documents category where one of them is "Packed" and the other one is not. Either they are both packed or they are both not packed.

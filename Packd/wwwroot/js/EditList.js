@@ -1,9 +1,7 @@
 ﻿window.onload = function () {
 
-
     let _NewCategoryButtonClick = 0;
     let _NewItemButtonClick = 0;
-    let _NewDefaultCategoryButtonClick = 0;
     let _NewDefaultItemButtonClick = 0;
 
     // Record of already added categories
@@ -150,10 +148,6 @@
         let ListId = $('#ListId').val();
         let ListName = $('#EditListName').text();
 
-
-        console.log(ListId);
-        console.log(ListName);
-
         let categories = [];
 
         // Get New List information to send to controller
@@ -203,9 +197,7 @@ function RemoveCustomCategoryEventHandler(existingCategoriesList) {
     $('.remove-custom-category').unbind().click(function (event) {
         event.stopPropagation();
         event.currentTarget.parentElement.parentElement.parentElement.remove();
-        console.log(existingCategoriesList);
         existingCategoriesList.splice(existingCategoriesList.indexOf(event.currentTarget.parentElement.innerText), 1);
-        console.log(existingCategoriesList);
     });
 }
 
